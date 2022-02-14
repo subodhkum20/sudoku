@@ -1,0 +1,37 @@
+Implementation:
+
+Firstly we have created a function "sudoku_rules" to encode all the contraints and add them in cnf except the clauses concerned with entries already filled in the sudoku-pair
+and then we add these clauses to the solver.
+Then we have created "given" function for encoding all the clauses concerned with the entries already filled in the sudoku-pair
+and then created "add_given" function for adding these clauses to the sudoku-pair.
+We then solve the sudoku-pair and if true output the number corresponding to the variables wich are true in the form of k^2-by-k^2 matrix(sudoku1 below sudoku2) and if false output "NONE".
+
+Variables: 
+Since there are k^4 cells in each sudoku and each cell can have k^2 value, we need 2*k^6 variables for both the sudokus.
+Each variable now needs to represent each cell(i,j) with a unique number(l).
+Since i;j;l < k^2, we have used a base k^2 representation for each variable 
+ie. for cell (i,j) with value "l", 
+    we have a variable   =         { i*(k^4) + j*(k^2) + l } for sudoku-1
+                             { k^6 + i*(k^4) + j*(k^2) + l } for sudoku-2       
+
+Constraints:
+1. for each cell has exactly 1 value 
+   a. atleast 1 value
+   b. atmost 1 value
+2. each row has all K^2 values only once 
+3. each col has all k^2 values only once 
+4. each block has all k^2 values only once 
+5. the sudokus have different values in corresponding cells
+
+Assumptions and Limitations:
+
+1. No of variables required for adding the clauses is within the int/long data type limit.
+2. Hardware machine has required processor capability to run the program for large inputs.
+3. Input file is present at the correct location specified in the code and with same name.
+
+
+
+
+
+                  
+    

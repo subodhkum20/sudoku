@@ -1,0 +1,30 @@
+Implementation:
+
+Firstly we create 2*(k^6) variables for 2 sudokus and then we shuffle(to get random sudoku-pair) these variables within each sudoku so that variables [1,k^6] still belong to 3-D matrix corresponding to sudoku-1and variables [k^6,2*(k^6)] still belong to 3-D matrix of sudoku-2.
+Now we add  all constraints which we have added in the first part of assignment to get a filled random sudoku pair.
+Now we try to find an alternative solution to the contraints by adding one more clause such that we donot have any variable corresponding to original solution.
+Now we find minimum no of filled entries(stored in "main" function) required to be given to user to get a unique solution similar to the one generated before.
+
+
+Variables: 
+Since there are k^4 cells in each sudoku and each cell can have k^2 value, we need 2*k^6 variables for both the sudokus.
+Each variable now needs to represent each cell(i,j) with a unique number(l).
+Since i;j;l < k^2, we have used a base k^2 representation for each variable 
+ie. for cell (i,j) with value "l", 
+    we have a variable   =         { i*(k^4) + j*(k^2) + l } for sudoku-1
+                             { k^6 + i*(k^4) + j*(k^2) + l } for sudoku-2       
+
+Constraints:
+1. for each cell has exactly 1 value 
+   a. atleast 1 value
+   b. atmost 1 value
+2. each row has all K^2 values only once 
+3. each col has all k^2 values only once 
+4. each block has all k^2 values only once 
+5. the sudokus have different values in corresponding cells
+
+Assumptions and Limitations:
+
+1. No of variables required for adding the clauses is within the int/long data type limit.
+2. Hardware machine has required processor capability to run the program for large inputs(k=5,6,...)
+3. Output csv file is present at the correct location specified in the code and with same name.
